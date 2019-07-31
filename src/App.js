@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import MedicalForm from './MedicalForm';
+import ListOfMedicalRecords from './ListOfMedicalRecords';
+import './App.css'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/**
+ * App component - houses all the other components in the app
+ */
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      medicalRecords: []
+    }
+  }
+
+  
+
+  handleSubmit(fields) {
+
+    const patientData = [fields];
+    this.setState({
+      medicalRecords: [...patientData, ...this.state.medicalRecords]
+    });
+
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>New Medical Record</h1>
+        </header>
+        <MedicalForm handleSubmit={fields => this.handleSubmit(fields)} />
+        {this.state.medicalRecords.length > 0 ? 
+          <ListOfMedicalRecords medicalRecords={this.state.medicalRecords} /> 
+          : ''}
+      </div>
+    );
+  }
 }
 
 export default App;
+

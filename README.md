@@ -1,4 +1,4 @@
-# Savics Coding Challenge
+# EMR (Electronic Medical Record)
 
 ## User stories 
 1. As a user, I want to create a new medical record so that it can be found in the medical records list.
